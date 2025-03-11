@@ -1,9 +1,7 @@
 import express from 'express';
-import { promises as fs } from 'fs';
-import {MongoClient, ObjectId} from 'mongodb';
+import {MongoClient} from 'mongodb';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import pg from 'pg';
 
 dotenv.config();
 
@@ -19,16 +17,16 @@ app.use(express.json())
 const PORT = 3000;
 
 //Endpoint to read and send JSON file content
-app.get('/socks', async (req, res) => {
+app.get('/api/planets', async (req, res) => {
     try {
         const client = await MongoClient.connect(url);
         const db = client.db(dbName);
         const collection = db.collection(collectionName);
-        const socks = await collection.find({}).toArray();
-        res.json(socks);
+        const planets = await collection.find({}).toArray();
+        res.json(planets);
     } catch (err) {
         console.error("Error:", err);
-        res.status(500).send("Hmmm, something smells... No socks for you! ☹");
+        res.status(500).send("Hmmm, something smells... No planets for you! ☹");
     }
 });
 
