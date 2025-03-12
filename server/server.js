@@ -5,8 +5,6 @@ import cors from 'cors';
 
 dotenv.config();
 
-// PostgreSQL pool configuration
-
 const url = process.env.MONGO_DB_URL;
 const dbName = process.env.MONGO_DB;
 const planetsCollection = process.env.MONGO_DB_COLLECTION_PLANETS;
